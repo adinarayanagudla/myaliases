@@ -1,0 +1,16 @@
+#Aliases
+alias pm="cd ~/git/sre-puppet-modules/"
+
+
+#Functions
+function sens()
+{
+    echo $1
+    if [ "$1" = "update" ]
+    then
+        echo "Updating data"
+        curl -s -u admin:Al1v3str3amStR9taAp1  "http://sensu.lsops.org:4567/clients" > ~/sensu_clients.txt && python ~/sensu_query.py > ~/sensu_clients_data.txt
+    else
+        grep $1 ~/sensu_clients_data.txt
+    fi
+}
